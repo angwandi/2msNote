@@ -26,13 +26,9 @@
             android:label="Edit Note"
             android:parentActivityName=".AddNoteActivity"
             tools:targetApi="jelly_bean" />
-        <activity
-            android:name=".DetailScreenNoteActivity"
-            android:label="Note Detail Screen"
+        <activity android:name=".DetailScreenNoteActivity"
             android:parentActivityName=".NoteActivity"
+            android:label="Note Detail Screen"
             tools:targetApi="jelly_bean" />
-        <activity
-            android:name=".ConsssActivity"
-            android:label="@string/title_activity_consss"></activity>
     </application>
 </manifest>

@@ -6,11 +6,10 @@ android {
     defaultConfig {
         applicationId "com.example.demad.a2msnote"
         minSdkVersion 15
-        targetSdkVersion 28
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -23,7 +22,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.android.support:design:28.0.0-beta01'
     implementation 'com.android.support:appcompat-v7:28.0.0-beta01'
     implementation 'com.android.support:design:28.0.0-beta01'
     implementation 'com.android.support:cardview-v7:28.0.0-beta01'
