@@ -7,4 +7,8 @@
     <string name="nt_hint_password">Password</string>
     <string name="nt_button_next">Next</string>
     <string name="nt_button_cancel">Cancel</string>
+    <string name="nt_filter_title">Filter</string>
+    <string name="nt_search_title">Search</string>
+    <string name="nt_title">Tilte</string>
+    <string name="nt_description">Description</string>
 </resources>
