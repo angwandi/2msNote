@@ -38,6 +38,9 @@ public class AllNoteFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         //recyclerView Decoration should go here
         //Shrine code lab 102
+        int largePadding = getResources().getDimensionPixelOffset(R.dimen.nt_note_grid_spacing);
+        int smallPadding = getResources().getDimensionPixelOffset(R.dimen.nt_note_grid_spacing_small);
+        recyclerView.addItemDecoration(new NoteGridItemDecoration(largePadding, smallPadding));
         return view;
     }
 
