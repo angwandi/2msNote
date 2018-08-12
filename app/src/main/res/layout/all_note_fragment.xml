@@ -24,16 +24,32 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="8dp"
         android:layout_marginTop="56dp"
         android:background="#dadada"
+        android:elevation="8dp"
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:targetApi="lollipop">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_note_fab"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="16dp"
+        android:background="@color/colorPrimaryDark"
+        android:clickable="true"
+        android:elevation="6dp"
+        android:focusable="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:srcCompat="@drawable/ic_add_button"
+        tools:targetApi="lollipop" />
 </FrameLayout>
