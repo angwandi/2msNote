@@ -38,7 +38,8 @@ public class LoginFragment extends Fragment {
                     passwordTextInput.setError(getString(R.string.nt_error_password));
                 } else {
                     passwordTextInput.setError(null); // Clear the error
-                    ((NavigationHost) Objects.requireNonNull(getActivity())).navigateTo(new AllNoteFragment(), false); // Navigate to the next Fragment
+                    ((NavigationHost) Objects.requireNonNull(getActivity())).navigateTo(
+                            new AllNoteFragment(), false); // Navigate to the next Fragment
                 }
             }
         });
@@ -61,6 +62,6 @@ public class LoginFragment extends Fragment {
  TODO authentication of the username and password.
 */
     private boolean isPasswordValid(@Nullable Editable text) {
-        return text != null && text.length() >= 8;
+        return text != null && text.length() >= 1;
     }
 }

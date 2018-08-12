@@ -8,14 +8,16 @@ import android.view.ViewGroup;
 
 import com.example.demad.a2msnote.data.NoteEntry;
 
+import java.util.List;
+
 /**
  * Adapter used to show a simple grid of notes.
  */
 public class NoteCardRecyclerViewAdapter extends RecyclerView.Adapter<NoteCardViewHolder> {
-    private int numberNotes;
+    private List<NoteEntry> noteEntries;
 
-    public NoteCardRecyclerViewAdapter(int numberOfNotes) {
-        this.numberNotes = numberOfNotes;
+    public NoteCardRecyclerViewAdapter(List<NoteEntry> noteEntries) {
+        this.noteEntries = noteEntries;
     }
 
     @NonNull
@@ -26,17 +28,21 @@ public class NoteCardRecyclerViewAdapter extends RecyclerView.Adapter<NoteCardVi
         return new NoteCardViewHolder(layoutView);
     }
 
+    /**
+     * Called by the RecyclerView to display data at a specified position in the Cursor.
+     */
     @Override
     public void onBindViewHolder(@NonNull NoteCardViewHolder holder, int position) {
-        if (numberNotes != 0 && position < numberNotes) {
-            NoteEntry note = new NoteEntry("Title", "Description", 0);
-            holder.noteTitle.setText(note.title);
-            holder.noteDescription.setText(note.description);
+        if (noteEntries != null && position < noteEntries.size()) {
+            // Determine the values of the wanted data
+            NoteEntry note = noteEntries.get(position);
+            holder.noteTitle.setText(note.getTitle());
+            holder.noteDescription.setText(note.getDescription());
         }
     }
 
     @Override
     public int getItemCount() {
-        return numberNotes;
+        return 100;
     }
 }
