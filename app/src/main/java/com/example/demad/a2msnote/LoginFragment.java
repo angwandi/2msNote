@@ -52,6 +52,7 @@ public class LoginFragment extends Fragment {
                 return false;
             }
         });
+        passwordTextInput.setPasswordVisibilityToggleEnabled(true);
         return view;
     }
 

@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
-    app:cardBackgroundColor="@android:color/white"
-    app:cardElevation="2dp"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardElevation="0dp"
     app:cardPreventCornerOverlap="true">
 
     <LinearLayout
@@ -17,9 +17,9 @@
             android:id="@+id/note_image"
             android:layout_width="match_parent"
             android:layout_height="108dp"
-            android:contentDescription="note image"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_take_note" />
+            android:background="?attr/colorPrimaryDark"
+            android:scaleType="centerCrop"
+            android:src="@drawable/gznzg" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,13 +32,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Note title"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceSubtitle2" />
 
             <TextView
                 android:id="@+id/note_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Note description"
+                android:textAlignment="center"
                 android:textAppearance="?attr/textAppearanceBody2" />
         </LinearLayout>
     </LinearLayout>

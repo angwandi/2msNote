@@ -3,7 +3,7 @@
     android:width="24dp"
     android:height="24dp"
     android:autoMirrored="true"
-    android:tint="#FFFFFF"
+    android:tint="@color/toolbarIconColor"
     android:viewportHeight="24.0"
     android:viewportWidth="24.0"
     tools:targetApi="kitkat">

@@ -1,16 +1,53 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Note" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--To use dark icons in the status bar-->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="colorControlActivated">@color/colorControlActivated</item>
+    </style>
+    <!--Toolbar-->
+    <style name="Widget.Note.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:theme">@style/Theme.Note</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="titleTextAppearance">@style/TextAppearance.Note.Toolbar</item>
     </style>
 
-    <style name="Widget.Note.Toolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">?attr/colorAccent</item>
-        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    <style name="TextAppearance.Note.Toolbar" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <!--Logo text title-->
+    <style name="TextAppearance.Note.Title" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?android:attr/colorPrimaryDark</item>
+    </style>
+    <!--text inputs on the login -->
+    <style name="Widget.Note.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.Note.TextInputLayout.HintText</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textColorHint">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.Note.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <!-- buttons on the login page-->
+    <style name="Widget.Note.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="backgroundTint">?attr/colorPrimaryDark</item>
+        <item name="android:stateListAnimator" tools:ignore="NewApi">
+            @animator/nt_next_button_state_list_anim
+        </item>
+    </style>
+
+    <style name="Widget.Note.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 </resources>
 

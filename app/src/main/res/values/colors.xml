@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#212121</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#0090ff</color>
-    <color name="colorSecondary">#ff7043</color>
-    <color name="colorSecondaryLight">#ffa270</color>
-    <color name="colorSecondaryDark">#c63f17</color>
-    <color name="colorTextOnPrimary">#ffffff</color>
-    <color name="colorTextOnSecondary">#000000</color>
-    <color name="loginPageBackgroundColor">#FFFFFF</color>
+    <color name="colorPrimary">#4fc3f7</color>
+    <color name="colorPrimaryDark">#0093c4</color>
+    <color name="colorAccent">#8bf6ff</color>
+    <color name="toolbarIconColor">@color/textColorPrimary</color>
+    <color name="ColorSecondary">#b200bc</color>
+    <color name="ColorSecondaryLight">#e851ef</color>
+    <color name="ColorSecondaryDark">#7e008b</color>
+    <color name="loginPageBackgroundColor">#CCDDDDDD</color>
+    <color name="NoteGridBackgroundColor">#FFFFFF</color>
+    <color name="textColorPrimary">#FF121212</color>
+    <!--sets the color of the outline box for the text fields:-->
+    <color name="colorControlActivated">@color/colorPrimaryDark</color>
 </resources>
