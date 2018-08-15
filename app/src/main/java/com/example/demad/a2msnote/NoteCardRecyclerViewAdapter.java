@@ -24,7 +24,7 @@ public class NoteCardRecyclerViewAdapter extends RecyclerView.Adapter<NoteCardVi
     @Override
     public NoteCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View layoutView =
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.nt_note_card, parent, false);
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.nt_main, parent, false);
         return new NoteCardViewHolder(layoutView);
     }
 
@@ -38,11 +38,13 @@ public class NoteCardRecyclerViewAdapter extends RecyclerView.Adapter<NoteCardVi
             NoteEntry note = noteEntries.get(position);
             holder.noteTitle.setText(note.getTitle());
             holder.noteDescription.setText(note.getDescription());
+            holder.notePriority.setText(note.getPriority());
+            holder.noteDateEdited.setText((CharSequence) note.getUpdatedAt());
         }
     }
 
     @Override
     public int getItemCount() {
-        return 100;
+        return 50;
     }
 }

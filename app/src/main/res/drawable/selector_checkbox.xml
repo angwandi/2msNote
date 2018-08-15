@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/ic_checkbox_marked_circle_outline" android:state_checked="true" />
-    <item android:drawable="@drawable/ic_checkbox_blank_circle" />
-</selector>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#C5CAE9" />
+</shape>
