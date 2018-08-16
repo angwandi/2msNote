@@ -11,4 +11,8 @@
         android:icon="@drawable/nt_stream"
         android:title="@string/nt_filter_title"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_delete"
+        android:title="@string/main_menu_delete_all_notes"
+        app:showAsAction="never" />
 </menu>

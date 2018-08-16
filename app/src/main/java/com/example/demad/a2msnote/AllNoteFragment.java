@@ -1,17 +1,15 @@
 package com.example.demad.a2msnote;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+import android.support.design.bottomappbar.BottomAppBar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,7 +23,8 @@ import com.example.demad.a2msnote.data.NoteEntry;
  * All Notes {@link Fragment} subclass.
  */
 public class AllNoteFragment extends Fragment {
-    FloatingActionButton addNotesFab;
+    FloatingActionButton floatingActionButton;
+    BottomAppBar bottomAppBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,8 +38,16 @@ public class AllNoteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.nt_all_note_fragment, container, false);
-        // Set up the toolbar
-        setUpToolbar(view);
+        //Set up bottom app bar
+        setUpBar(view);
+        //set up fab
+        floatingActionButton = view.findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                swapFragment();
+            }
+        });
         // Set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -53,30 +60,20 @@ public class AllNoteFragment extends Fragment {
         int largePadding = getResources().getDimensionPixelOffset(R.dimen.nt_note_grid_spacing);
         int smallPadding = getResources().getDimensionPixelOffset(R.dimen.nt_note_grid_spacing_small);
         recyclerView.addItemDecoration(new NoteGridItemDecoration(largePadding, smallPadding));
-        /*set up Add NoteFab */
-        addNotesFab = view.findViewById(R.id.add_note_fab);
-        assert getFragmentManager() != null;
-        addNotesFab.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View view) {
-                swapFragment();
-            }
-        });
         return view;
     }
 
-    private void setUpToolbar(View view) {
-        Toolbar toolbar = view.findViewById(R.id.app_bar);
+    private void setUpBar(View view) {
+        bottomAppBar = view.findViewById(R.id.bottom_app_bar);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
-            activity.setSupportActionBar(toolbar);
+            activity.setSupportActionBar(bottomAppBar);
         }
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
-        menuInflater.inflate(R.menu.nt_toolbar_menu, menu);
+        menuInflater.inflate(R.menu.nt_bar_menu, menu);
         super.onCreateOptionsMenu(menu, menuInflater);
     }
 
@@ -91,6 +88,7 @@ public class AllNoteFragment extends Fragment {
         transaction.commit();
     }
 }
+
 
 
 
