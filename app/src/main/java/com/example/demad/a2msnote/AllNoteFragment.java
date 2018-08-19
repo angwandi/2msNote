@@ -1,8 +1,10 @@
 package com.example.demad.a2msnote;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.bottomappbar.BottomAppBar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -39,17 +41,19 @@ public class AllNoteFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.nt_all_note_fragment, container, false);
         //Set up bottom app bar
+        bottomAppBar = view.findViewById(R.id._nt_add_bottom_app_bar);
         setUpBar(view);
         //set up fab
-        floatingActionButton = view.findViewById(R.id.fab);
+        floatingActionButton = view.findViewById(R.id.nt_add_fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View view) {
                 swapFragment();
             }
         });
         // Set up the RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.nt_add_note_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
         NoteCardRecyclerViewAdapter adapter;
@@ -64,7 +68,6 @@ public class AllNoteFragment extends Fragment {
     }
 
     private void setUpBar(View view) {
-        bottomAppBar = view.findViewById(R.id.bottom_app_bar);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
             activity.setSupportActionBar(bottomAppBar);
@@ -73,11 +76,12 @@ public class AllNoteFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
-        menuInflater.inflate(R.menu.nt_bar_menu, menu);
+        menuInflater.inflate(R.menu.nt_bar_all_note_menu, menu);
         super.onCreateOptionsMenu(menu, menuInflater);
     }
 
     /*Swap to Add Note Fragment*/
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void swapFragment() {
         Fragment fragment;
         fragment = AddNoteFragment.newInstance();

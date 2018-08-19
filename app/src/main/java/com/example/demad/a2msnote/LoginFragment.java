@@ -53,6 +53,7 @@ public class LoginFragment extends Fragment {
                 return false;
             }
         });
+        passwordEditText.requestFocus(); //remove later please todo
         passwordTextInput.setPasswordVisibilityToggleEnabled(true);
         return view;
     }
