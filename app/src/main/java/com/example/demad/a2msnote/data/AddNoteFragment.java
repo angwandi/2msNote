@@ -10,10 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.demad.a2msnote.PriorityNavDrawerFragment;
 import com.example.demad.a2msnote.R;
 
 import java.util.Objects;
@@ -68,5 +70,16 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         menuInflater.inflate(R.menu.nt_bar_add_note_menu, menu);
         super.onCreateOptionsMenu(menu, menuInflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.bar_priority:
+                PriorityNavDrawerFragment priorityNavD = new PriorityNavDrawerFragment();
+                assert getFragmentManager() != null;
+                priorityNavD.show(getFragmentManager(), priorityNavD.getTag());
+        }
+        return true;
     }
 }

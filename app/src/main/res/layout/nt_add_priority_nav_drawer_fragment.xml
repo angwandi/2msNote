@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_view_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:behavior_hideable="true"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+    <TextView
+        android:id="@+id/nt_add_priority_nav_drawer_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:text="Select Note Prioriry"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/nt_add_img_nav_drawer"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nt_add_Priority_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="4dp"
+        android:paddingBottom="40dp"
+        android:theme="@style/NavigationDrawerStyle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:menu="@menu/nt_add_priority_nav_drawer" />
+
+    <TextView
+        android:id="@+id/nt_desc_priority_nav_drawer_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Low priority is selected by default"
+        app:layout_constraintStart_toStartOf="@+id/nt_add_priority_nav_drawer_tv"
+        app:layout_constraintTop_toBottomOf="@+id/nt_add_priority_nav_drawer_tv" />
+
+    <ImageView
+        android:id="@+id/nt_add_img_nav_drawer"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/ic_priority_nav_drawer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nt_add_priority_nav_drawer_tv" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:layout_marginTop="15dp"
+        android:background="#447e7e7e"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nt_desc_priority_nav_drawer_tv" />
+
+    <ImageView
+        android:id="@+id/close_imageview"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_close_nav_drawer"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/nt_desc_priority_nav_drawer_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nt_add_priority_nav_drawer_tv" />
+</android.support.constraint.ConstraintLayout>

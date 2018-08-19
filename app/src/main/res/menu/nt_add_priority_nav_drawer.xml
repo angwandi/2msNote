@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_low"
+        android:icon="@drawable/ic_priority_low"
+        android:title="Low" />
+    <item
+        android:id="@+id/nav_medium"
+        android:icon="@drawable/ic_priority_medium"
+        android:title="Medium" />
+    <item
+        android:id="@+id/nav_high"
+        android:icon="@drawable/ic_priority_high"
+        android:title="High" />
+    <item
+        android:icon="@drawable/ic_priority_low"
+        android:title="Low" />
+    <item
+        android:icon="@drawable/ic_priority_medium"
+        android:title="Medium" />
+    <item
+        android:icon="@drawable/ic_priority_high"
+        android:title="High" />
+    <item
+        android:icon="@drawable/ic_priority_low"
+        android:title="Low" />
+    <item
+        android:icon="@drawable/ic_priority_medium"
+        android:title="Medium" />
+    <item
+        android:icon="@drawable/ic_priority_high"
+        android:title="High" />
+    <item
+        android:icon="@drawable/ic_priority_low"
+        android:title="Low" />
+    <item
+        android:icon="@drawable/ic_priority_medium"
+        android:title="Medium" />
+    <item
+        android:icon="@drawable/ic_priority_high"
+        android:title="High" />
+    <item
+        android:icon="@drawable/ic_priority_low"
+        android:title="Low" />
+    <item
+        android:icon="@drawable/ic_priority_medium"
+        android:title="Medium" />
+    <item
+        android:icon="@drawable/ic_priority_high"
+        android:title="High" />
+    <item
+        android:icon="@drawable/ic_priority_low"
+        android:title="Low" />
+    <item
+        android:icon="@drawable/ic_priority_medium"
+        android:title="Medium" />
+    <item
+        android:icon="@drawable/ic_priority_high"
+        android:title="High" />
+</menu>
