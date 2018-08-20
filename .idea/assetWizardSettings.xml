@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio2/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_close_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio2/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_mic_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_close_nav_drawer" />
-                            <entry key="sourceFile" value="C:\Users\demad\Downloads\view-quilt.svg" />
+                            <entry key="outputName" value="ic_mic" />
+                            <entry key="sourceFile" value="C:\Users\demad\Downloads\pen.svg" />
                           </map>
                         </option>
                       </PersistentState>

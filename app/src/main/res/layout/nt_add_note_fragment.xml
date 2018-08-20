@@ -14,9 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/ColorSecondaryLight"
-            android:fillViewport="true"
             android:nestedScrollingEnabled="true"
-            android:paddingBottom="32dp"
             tools:targetApi="lollipop">
 
             <android.support.constraint.ConstraintLayout

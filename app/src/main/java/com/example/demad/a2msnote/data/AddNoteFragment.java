@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.demad.a2msnote.PlusBoxFragment;
 import com.example.demad.a2msnote.PriorityNavDrawerFragment;
 import com.example.demad.a2msnote.R;
 
@@ -79,6 +80,12 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
                 PriorityNavDrawerFragment priorityNavD = new PriorityNavDrawerFragment();
                 assert getFragmentManager() != null;
                 priorityNavD.show(getFragmentManager(), priorityNavD.getTag());
+                break;
+            case R.id.bar_plus_box:
+                PlusBoxFragment plusBoxNavD = new PlusBoxFragment();
+                assert getFragmentManager() != null;
+                plusBoxNavD.show(getFragmentManager(), plusBoxNavD.getTag());
+                break;
         }
         return true;
     }

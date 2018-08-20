@@ -25,10 +25,6 @@ public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
     NavigationView navigationView;
     ImageView imageView;
 
-    public static PriorityNavDrawerFragment newInstance() {
-        return new PriorityNavDrawerFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

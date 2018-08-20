@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_plus_box_TakePhoto"
+        android:icon="@drawable/ic_camera"
+        android:title="Take photo" />
+    <item
+        android:id="@+id/nav_plus_box_ChooseImage"
+        android:icon="@drawable/ic_image"
+        android:title="Choose image" />
+    <item
+        android:id="@+id/nav_plus_box_Drawing"
+        android:icon="@drawable/ic_pen"
+        android:title="Drawing" />
+    <item
+        android:id="@+id/nav_plus_box_Recording"
+        android:icon="@drawable/ic_mic"
+        android:title="Recording" />
+</menu>
