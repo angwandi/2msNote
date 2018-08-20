@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.demad.a2msnote.ActivityFragments.AllNoteFragment;
+import com.example.demad.a2msnote.ActivityFragments.LoginFragment;
+
 public class MainActivity extends AppCompatActivity implements NavigationHost {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

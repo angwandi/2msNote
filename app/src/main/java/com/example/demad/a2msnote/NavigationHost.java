@@ -1,5 +1,7 @@
 package com.example.demad.a2msnote;
 
+import com.example.demad.a2msnote.ActivityFragments.AllNoteFragment;
+
 /**
  * A host (typically an {@code Activity}} that can display fragments and knows how to respond to
  * navigation events.

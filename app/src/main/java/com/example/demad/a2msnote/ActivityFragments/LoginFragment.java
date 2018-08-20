@@ -1,4 +1,4 @@
-package com.example.demad.a2msnote;
+package com.example.demad.a2msnote.ActivityFragments;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +14,9 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.demad.a2msnote.NavigationHost;
+import com.example.demad.a2msnote.R;
 
 import java.util.Objects;
 

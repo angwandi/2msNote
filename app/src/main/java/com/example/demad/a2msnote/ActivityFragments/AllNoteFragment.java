@@ -1,4 +1,4 @@
-package com.example.demad.a2msnote;
+package com.example.demad.a2msnote.ActivityFragments;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
@@ -18,7 +18,9 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.demad.a2msnote.data.AddNoteFragment;
+import com.example.demad.a2msnote.NoteCardRecyclerViewAdapter;
+import com.example.demad.a2msnote.NoteGridItemDecoration;
+import com.example.demad.a2msnote.R;
 import com.example.demad.a2msnote.data.NoteEntry;
 
 /**

@@ -1,4 +1,4 @@
-package com.example.demad.a2msnote;
+package com.example.demad.a2msnote.ui;
 
 import android.app.Dialog;
 import android.app.Fragment;
@@ -15,63 +15,66 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.demad.a2msnote.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
-    NavigationView navigationView;
-    ImageView imageView;
+public class DotCircleFragment extends BottomSheetDialogFragment {
+    NavigationView dot_circle_navigationView;
+
+    public DotCircleFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.nt_add_priority_nav_drawer_fragment, container, false);
-        navigationView = view.findViewById(R.id.nt_add_Priority_navigation_view);
-        imageView = view.findViewById(R.id.close_imageview);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.nt_add_dot_circle_fragment, container, false);
+        dot_circle_navigationView = view.findViewById(R.id.nt_add_dots_circle_navigation_view);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        /*Handle Priority menu item click
-         * to be moved later todo
-         * */
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        dot_circle_navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.nav_low:
-                        Toast.makeText(navigationView.getContext(), "Low priority selected", Toast.LENGTH_SHORT).show();
-                        PriorityNavDrawerFragment.this.dismiss();
+                    case R.id.nav_dots_circle_Delete:
+                        Toast.makeText(dot_circle_navigationView.getContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+                        DotCircleFragment.this.dismiss();
                         break;
-                    case R.id.nav_medium:
-                        Toast.makeText(navigationView.getContext(), "Medium priority selected", Toast.LENGTH_SHORT).show();
-                        PriorityNavDrawerFragment.this.dismiss();
+                    case R.id.nav_dots_circle_MakeCopy:
+                        Toast.makeText(dot_circle_navigationView.getContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+                        DotCircleFragment.this.dismiss();
                         break;
-                    case R.id.nav_high:
-                        Toast.makeText(navigationView.getContext(), "High priority selected", Toast.LENGTH_SHORT).show();
-                        PriorityNavDrawerFragment.this.dismiss();
+                    case R.id.nav_dots_circle_Send:
+                        Toast.makeText(dot_circle_navigationView.getContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+                        DotCircleFragment.this.dismiss();
+                        break;
+                    case R.id.nav_dots_circle_Collaborate:
+                        Toast.makeText(dot_circle_navigationView.getContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+                        DotCircleFragment.this.dismiss();
+                        break;
+                    case R.id.nav_dots_circle_Labels:
+                        Toast.makeText(dot_circle_navigationView.getContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+                        DotCircleFragment.this.dismiss();
+                        break;
+                    case R.id.nav_dots_circle_colors:
+                        Toast.makeText(dot_circle_navigationView.getContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+                        DotCircleFragment.this.dismiss();
                         break;
                 }
                 return true;
             }
         });
-        /*Close Priority NavigationDrawer Fragment by clicking on the close imageView*/
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PriorityNavDrawerFragment.this.dismiss();
-            }
-        });
-        /*Remove the horrible scroll bar*/
-        this.disableNavigationViewScrollbars(navigationView);
     }
 
-    /*Control the behavior of the Bottom sheet*/
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -80,23 +83,18 @@ public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
             @Override
             public void onShow(DialogInterface dialogInterface) {
                 FrameLayout frameLayout = dialog.findViewById(R.id.design_bottom_sheet);
-                assert frameLayout != null;
                 BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(frameLayout);
                 bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
                     @Override
                     public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                        if ((double) slideOffset > 0.5D) {
-                            imageView.setVisibility(View.VISIBLE);
-                        } else {
-                            imageView.setVisibility(View.GONE);
-                        }
+                        disableNavigationViewScrollbars(dot_circle_navigationView);
                     }
 
                     @Override
                     public void onStateChanged(@NonNull View bottomSheet, int newState) {
                         switch (newState) {
                             case 5:
-                                PriorityNavDrawerFragment.this.dismiss();
+                                DotCircleFragment.this.dismiss();
                             default:
                         }
                     }

@@ -1,4 +1,4 @@
-package com.example.demad.a2msnote;
+package com.example.demad.a2msnote.ui;
 
 import android.app.Dialog;
 import android.app.Fragment;
@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.demad.a2msnote.R;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -28,7 +30,7 @@ public class PlusBoxFragment extends BottomSheetDialogFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.nt_add_plus_box_fragment, container, false);

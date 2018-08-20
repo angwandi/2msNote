@@ -10,14 +10,17 @@
 
     <TextView
         android:id="@+id/nt_add_priority_nav_drawer_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="12dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
         android:text="Select Note Prioriry"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/close_imageview"
         app:layout_constraintStart_toEndOf="@+id/nt_add_img_nav_drawer"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,10 +39,13 @@
 
     <TextView
         android:id="@+id/nt_desc_priority_nav_drawer_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="2dp"
         android:text="Low priority is selected by default"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/nt_add_priority_nav_drawer_tv"
         app:layout_constraintTop_toBottomOf="@+id/nt_add_priority_nav_drawer_tv" />
 

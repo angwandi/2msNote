@@ -2,15 +2,15 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/plus_box_navigation_view_layout"
+    android:id="@+id/dots_circle_navigation_view_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:behavior_hideable="true"
     app:layout_behavior="@string/bottom_sheet_behavior"
-    tools:context=".ui.PlusBoxFragment">
+    tools:context=".ui.DotCircleFragment">
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/nt_add_plus_box_navigation_view"
+        android:id="@+id/nt_add_dots_circle_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -20,5 +20,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/nt_add_plus_box_nav_drawer" />
+        app:menu="@menu/nt_add_dots_circle_nav_drawer" />
 </android.support.constraint.ConstraintLayout>

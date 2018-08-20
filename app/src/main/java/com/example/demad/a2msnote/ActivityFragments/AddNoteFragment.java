@@ -1,4 +1,4 @@
-package com.example.demad.a2msnote.data;
+package com.example.demad.a2msnote.ActivityFragments;
 
 import android.app.Fragment;
 import android.os.Build;
@@ -15,9 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.example.demad.a2msnote.PlusBoxFragment;
-import com.example.demad.a2msnote.PriorityNavDrawerFragment;
 import com.example.demad.a2msnote.R;
+import com.example.demad.a2msnote.ui.DotCircleFragment;
+import com.example.demad.a2msnote.ui.PlusBoxFragment;
+import com.example.demad.a2msnote.ui.PriorityNavDrawerFragment;
 
 import java.util.Objects;
 
@@ -73,6 +74,7 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
         super.onCreateOptionsMenu(menu, menuInflater);
     }
 
+    /*Bottom app bar item menu behaviors*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -85,6 +87,11 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
                 PlusBoxFragment plusBoxNavD = new PlusBoxFragment();
                 assert getFragmentManager() != null;
                 plusBoxNavD.show(getFragmentManager(), plusBoxNavD.getTag());
+                break;
+            case R.id.bar_dots:
+                DotCircleFragment dotCircleNavD = new DotCircleFragment();
+                assert getFragmentManager() != null;
+                dotCircleNavD.show(getFragmentManager(), dotCircleNavD.getTag());
                 break;
         }
         return true;
