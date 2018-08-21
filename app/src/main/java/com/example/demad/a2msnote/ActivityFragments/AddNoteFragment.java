@@ -93,7 +93,17 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
                 assert getFragmentManager() != null;
                 dotCircleNavD.show(getFragmentManager(), dotCircleNavD.getTag());
                 break;
+            case R.id.bar_back:
+                assert getFragmentManager() != null;
+                getFragmentManager().getBackStackEntryCount();
+                getFragmentManager().popBackStack();
+                break;
         }
         return true;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
     }
 }

@@ -72,8 +72,7 @@
             android:layout_gravity="bottom"
             app:backgroundTint="@color/colorPrimary"
             app:hideOnScroll="true"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:navigationIcon="@drawable/ic_back" />
+            app:layout_scrollFlags="scroll|enterAlways" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/nt_add_fab"

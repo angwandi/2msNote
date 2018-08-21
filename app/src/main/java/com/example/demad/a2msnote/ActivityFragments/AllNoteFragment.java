@@ -15,8 +15,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.demad.a2msnote.NoteCardRecyclerViewAdapter;
 import com.example.demad.a2msnote.NoteGridItemDecoration;
@@ -27,6 +29,7 @@ import com.example.demad.a2msnote.data.NoteEntry;
  * All Notes {@link Fragment} subclass.
  */
 public class AllNoteFragment extends Fragment {
+    Menu menu1;
     FloatingActionButton floatingActionButton;
     BottomAppBar bottomAppBar;
 
@@ -79,7 +82,49 @@ public class AllNoteFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         menuInflater.inflate(R.menu.nt_bar_all_note_menu, menu);
+        this.menu1 = menu;
         super.onCreateOptionsMenu(menu, menuInflater);
+    }
+
+    /*Bottom app bar item menu behaviors*/
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.bar_all_note_search:
+                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(final Menu menu) {
+        final MenuItem list = menu.findItem(R.id.bar_all_note_list_view);
+        final MenuItem stag = menu.findItem(R.id.bar_all_note_staggered_view);
+        /*menu.findItem(R.id.bar_all_note_list_view).setVisible(false);
+        menu.findItem(R.id.bar_all_note_staggered_view).setVisible(true);*/
+        menu.findItem(R.id.bar_all_note_list_view).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                list.setVisible(false);
+                stag.setVisible(isVisible());
+                Toast.makeText(getContext(), "Staggered", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+        menu.findItem(R.id.bar_all_note_staggered_view).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                list.setVisible(isVisible());
+                stag.setVisible(false);
+                Toast.makeText(getContext(), "List", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+        super.onPrepareOptionsMenu(menu);
     }
 
     /*Swap to Add Note Fragment*/

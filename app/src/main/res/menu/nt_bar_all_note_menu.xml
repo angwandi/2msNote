@@ -2,17 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/search"
+        android:id="@+id/bar_all_note_search"
         android:icon="@drawable/nt_search"
         android:title="@string/nt_search_title"
         app:showAsAction="always" />
     <item
-        android:id="@+id/filter"
+        android:id="@+id/bar_all_note_list_view"
         android:icon="@drawable/nt_stream"
         android:title="@string/nt_filter_title"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
     <item
-        android:id="@+id/action_delete"
+        android:id="@+id/bar_all_note_staggered_view"
+        android:icon="@drawable/ic_view_staggered"
+        android:title="@string/nt_staggered_view"
+        android:visible="false"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/bar_all_note_action_delete"
         android:title="@string/main_menu_delete_all_notes"
         app:showAsAction="never" />
 </menu>

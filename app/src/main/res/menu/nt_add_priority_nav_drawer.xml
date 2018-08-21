@@ -12,49 +12,4 @@
         android:id="@+id/nav_high"
         android:icon="@drawable/ic_priority_high"
         android:title="High" />
-    <item
-        android:icon="@drawable/ic_priority_low"
-        android:title="Low" />
-    <item
-        android:icon="@drawable/ic_priority_medium"
-        android:title="Medium" />
-    <item
-        android:icon="@drawable/ic_priority_high"
-        android:title="High" />
-    <item
-        android:icon="@drawable/ic_priority_low"
-        android:title="Low" />
-    <item
-        android:icon="@drawable/ic_priority_medium"
-        android:title="Medium" />
-    <item
-        android:icon="@drawable/ic_priority_high"
-        android:title="High" />
-    <item
-        android:icon="@drawable/ic_priority_low"
-        android:title="Low" />
-    <item
-        android:icon="@drawable/ic_priority_medium"
-        android:title="Medium" />
-    <item
-        android:icon="@drawable/ic_priority_high"
-        android:title="High" />
-    <item
-        android:icon="@drawable/ic_priority_low"
-        android:title="Low" />
-    <item
-        android:icon="@drawable/ic_priority_medium"
-        android:title="Medium" />
-    <item
-        android:icon="@drawable/ic_priority_high"
-        android:title="High" />
-    <item
-        android:icon="@drawable/ic_priority_low"
-        android:title="Low" />
-    <item
-        android:icon="@drawable/ic_priority_medium"
-        android:title="Medium" />
-    <item
-        android:icon="@drawable/ic_priority_high"
-        android:title="High" />
 </menu>

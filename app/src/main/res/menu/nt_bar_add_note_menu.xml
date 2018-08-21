@@ -2,20 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/bar_back"
+        android:icon="@drawable/ic_back"
+        android:title="Return"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/bar_priority"
         android:icon="@drawable/ic_priority_rv"
         android:title="Priority"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/bar_plus_box"
         android:icon="@drawable/ic_plus"
         android:title="Options"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/bar_dots"
         android:icon="@drawable/ic_dots"
         android:title="Dots Settings"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/bar_reminder"
         android:icon="@drawable/ic_reminder"
