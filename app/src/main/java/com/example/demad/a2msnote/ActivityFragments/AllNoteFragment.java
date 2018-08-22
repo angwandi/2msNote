@@ -24,6 +24,7 @@ import com.example.demad.a2msnote.NoteCardRecyclerViewAdapter;
 import com.example.demad.a2msnote.NoteGridItemDecoration;
 import com.example.demad.a2msnote.R;
 import com.example.demad.a2msnote.data.NoteEntry;
+import com.example.demad.a2msnote.ui.AllNoteNavDrawerFragment;
 
 /**
  * All Notes {@link Fragment} subclass.
@@ -91,13 +92,21 @@ public class AllNoteFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.bar_all_note_menu:
+                AllNoteNavDrawerFragment allNoteNavDrawerFragment = new AllNoteNavDrawerFragment();
+                assert getFragmentManager() != null;
+                allNoteNavDrawerFragment.show(getFragmentManager(), allNoteNavDrawerFragment.getTag());
+                return true;
             case R.id.bar_all_note_search:
                 Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
-                break;
+            default:
         }
         return true;
     }
 
+    /*Change Staggered view to list View
+     * Work on screen orientation changes todo
+     * */
     @Override
     public void onPrepareOptionsMenu(final Menu menu) {
         final MenuItem list = menu.findItem(R.id.bar_all_note_list_view);

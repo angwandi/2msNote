@@ -27,8 +27,7 @@
             app:backgroundTint="@color/colorPrimary"
             app:fabAlignmentMode="center"
             app:hideOnScroll="true"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:navigationIcon="@drawable/nt_menu" />
+            app:layout_scrollFlags="scroll|enterAlways" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/nt_add_fab"

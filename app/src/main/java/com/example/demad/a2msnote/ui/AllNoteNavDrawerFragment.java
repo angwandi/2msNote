@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.NavigationView;
@@ -23,16 +22,21 @@ import com.example.demad.a2msnote.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
+public class AllNoteNavDrawerFragment extends BottomSheetDialogFragment {
     NavigationView navigationView;
-    ImageView imageView;
+    ImageView close_image;
+
+    public AllNoteNavDrawerFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.nt_add_priority_nav_drawer_fragment, container, false);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.all_note_nav_drawer_fragment, container, false);
         navigationView = view.findViewById(R.id.all_note_main_navigation_view);
-        imageView = view.findViewById(R.id.close_imageview);
+        close_image = view.findViewById(R.id.close_imageview);
         return view;
     }
 
@@ -46,31 +50,40 @@ public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.nav_low:
-                        Toast.makeText(navigationView.getContext(), "Low priority selected", Toast.LENGTH_SHORT).show();
-                        PriorityNavDrawerFragment.this.dismiss();
-                        break;
-                    case R.id.nav_medium:
-                        Toast.makeText(navigationView.getContext(), "Medium priority selected", Toast.LENGTH_SHORT).show();
-                        PriorityNavDrawerFragment.this.dismiss();
-                        break;
-                    case R.id.nav_high:
-                        Toast.makeText(navigationView.getContext(), "High priority selected", Toast.LENGTH_SHORT).show();
-                        PriorityNavDrawerFragment.this.dismiss();
-                        break;
+                    case R.id.nav_all_note_Reminders:
+                        Toast.makeText(navigationView.getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                        AllNoteNavDrawerFragment.this.dismiss();
+                        return true;
+                    case R.id.group_nav_all_note_labels:
+                        Toast.makeText(navigationView.getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                        AllNoteNavDrawerFragment.this.dismiss();
+                        return true;
+                    case R.id.group_nav_all_note_deletes:
+                        Toast.makeText(navigationView.getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                        AllNoteNavDrawerFragment.this.dismiss();
+                        return true;
+                    case R.id.nav_all_note_Settings:
+                        Toast.makeText(navigationView.getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                        AllNoteNavDrawerFragment.this.dismiss();
+                        return true;
+                    case R.id.nav_all_note_Help:
+                        Toast.makeText(navigationView.getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                        AllNoteNavDrawerFragment.this.dismiss();
+                    default:
                 }
                 return true;
             }
         });
         /*Close Priority NavigationDrawer Fragment by clicking on the close close_image*/
-        imageView.setOnClickListener(new View.OnClickListener() {
+        close_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PriorityNavDrawerFragment.this.dismiss();
+                AllNoteNavDrawerFragment.this.dismiss();
             }
         });
         /*Remove the horrible scroll bar*/
-        this.disableNavigationViewScrollbars(navigationView);
+        PriorityNavDrawerFragment priorityNavDrawerFragment = new PriorityNavDrawerFragment();
+        priorityNavDrawerFragment.disableNavigationViewScrollbars(navigationView);
     }
 
     /*Control the behavior of the Bottom sheet*/
@@ -88,9 +101,9 @@ public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
                     @Override
                     public void onSlide(@NonNull View bottomSheet, float slideOffset) {
                         if ((double) slideOffset > 0.5D) {
-                            imageView.setVisibility(View.VISIBLE);
+                            close_image.setVisibility(View.VISIBLE);
                         } else {
-                            imageView.setVisibility(View.GONE);
+                            close_image.setVisibility(View.GONE);
                         }
                     }
 
@@ -98,7 +111,7 @@ public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
                     public void onStateChanged(@NonNull View bottomSheet, int newState) {
                         switch (newState) {
                             case 5:
-                                PriorityNavDrawerFragment.this.dismiss();
+                                AllNoteNavDrawerFragment.this.dismiss();
                             default:
                         }
                     }
@@ -106,13 +119,5 @@ public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
             }
         });
         return dialog;
-    }
-
-    /*Helper Method to hide the horrible scroll bar*/
-    public final void disableNavigationViewScrollbars(NavigationView navigationView) {
-        View view = navigationView != null ? navigationView.getChildAt(0) : null;
-        NavigationMenuView navigationMenuView = (NavigationMenuView) view;
-        assert navigationMenuView != null;
-        navigationMenuView.setVerticalScrollBarEnabled(false);
     }
 }

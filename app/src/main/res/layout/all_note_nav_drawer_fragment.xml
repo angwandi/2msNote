@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/priority_navigation_view_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/darker_gray"
     app:behavior_hideable="true"
-    app:layout_behavior="@string/bottom_sheet_behavior">
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    tools:context=".ui.AllNoteNavDrawerFragment">
 
     <TextView
         android:id="@+id/all_note_account_name_nav_drawer_tv"
@@ -19,7 +21,7 @@
         android:layout_marginTop="16dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Select Note Prioriry"
+        android:text="2ms Dema Angwandia"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/close_imageview"
@@ -36,8 +38,8 @@
         android:theme="@style/NavigationDrawerStyle"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:menu="@menu/nt_add_priority_nav_drawer" />
+        app:layout_constraintTop_toBottomOf="@+id/all_note_view"
+        app:menu="@menu/all_note_nav_drawer" />
 
     <TextView
         android:id="@+id/all_note_account_mail_nav_drawer_tv"
@@ -48,7 +50,7 @@
         android:layout_marginTop="2dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Low priority is selected by default"
+        android:text="demsdema217@gmail.com"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/all_note_account_name_nav_drawer_tv"
         app:layout_constraintTop_toBottomOf="@+id/all_note_account_name_nav_drawer_tv" />
@@ -59,12 +61,12 @@
         android:layout_height="48dp"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
-        android:background="@drawable/ic_priority_nav_drawer"
+        android:background="@drawable/ic_account_vector"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/all_note_account_name_nav_drawer_tv" />
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/all_note_view"
         android:layout_width="match_parent"
         android:layout_height="2dip"
         android:layout_marginTop="15dp"
@@ -88,3 +90,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/all_note_account_name_nav_drawer_tv" />
 </android.support.constraint.ConstraintLayout>
+
