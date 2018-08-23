@@ -10,17 +10,17 @@
         android:id="@+id/bar_priority"
         android:icon="@drawable/ic_priority_rv"
         android:title="Priority"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/bar_plus_box"
         android:icon="@drawable/ic_plus"
         android:title="Options"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/bar_dots"
         android:icon="@drawable/ic_dots"
         android:title="Dots Settings"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/bar_reminder"
         android:icon="@drawable/ic_reminder"

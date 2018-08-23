@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.demad.a2msnote.R;
@@ -24,7 +23,6 @@ import com.example.demad.a2msnote.R;
  */
 public class AllNoteNavDrawerFragment extends BottomSheetDialogFragment {
     NavigationView navigationView;
-    ImageView close_image;
 
     public AllNoteNavDrawerFragment() {
         // Required empty public constructor
@@ -36,7 +34,6 @@ public class AllNoteNavDrawerFragment extends BottomSheetDialogFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.all_note_nav_drawer_fragment, container, false);
         navigationView = view.findViewById(R.id.all_note_main_navigation_view);
-        close_image = view.findViewById(R.id.close_imageview);
         return view;
     }
 
@@ -74,13 +71,7 @@ public class AllNoteNavDrawerFragment extends BottomSheetDialogFragment {
                 return true;
             }
         });
-        /*Close Priority NavigationDrawer Fragment by clicking on the close close_image*/
-        close_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AllNoteNavDrawerFragment.this.dismiss();
-            }
-        });
+
         /*Remove the horrible scroll bar*/
         PriorityNavDrawerFragment priorityNavDrawerFragment = new PriorityNavDrawerFragment();
         priorityNavDrawerFragment.disableNavigationViewScrollbars(navigationView);
@@ -100,11 +91,6 @@ public class AllNoteNavDrawerFragment extends BottomSheetDialogFragment {
                 bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
                     @Override
                     public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                        if ((double) slideOffset > 0.5D) {
-                            close_image.setVisibility(View.VISIBLE);
-                        } else {
-                            close_image.setVisibility(View.GONE);
-                        }
                     }
 
                     @Override

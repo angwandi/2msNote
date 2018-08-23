@@ -84,6 +84,7 @@ public class DotCircleFragment extends BottomSheetDialogFragment {
             public void onShow(DialogInterface dialogInterface) {
                 FrameLayout frameLayout = dialog.findViewById(R.id.design_bottom_sheet);
                 BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(frameLayout);
+                bottomSheetBehavior.setFitToContents(true);
                 bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
                     @Override
                     public void onSlide(@NonNull View bottomSheet, float slideOffset) {
