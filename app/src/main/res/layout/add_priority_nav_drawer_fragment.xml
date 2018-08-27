@@ -36,7 +36,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        app:menu="@menu/nt_add_priority_nav_drawer" />
+        app:menu="@menu/add_priority_nav_drawer" />
 
     <TextView
         android:id="@+id/all_note_account_mail_nav_drawer_tv"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dadada"
+    android:background="@color/allNoteBackgroundColor"
     tools:context=".ActivityFragments.AllNoteFragment">
 
     <android.support.design.widget.CoordinatorLayout
@@ -20,7 +20,7 @@
             tools:targetApi="lollipop" />
 
         <android.support.design.bottomappbar.BottomAppBar
-            android:id="@+id/_nt_add_bottom_app_bar"
+            android:id="@+id/all_note_bottom_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -33,7 +33,7 @@
             android:id="@+id/nt_add_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_anchor="@id/_nt_add_bottom_app_bar"
+            app:layout_anchor="@id/all_note_bottom_app_bar"
             app:srcCompat="@drawable/ic_add_button" />
     </android.support.design.widget.CoordinatorLayout>
 </FrameLayout>

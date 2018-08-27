@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/bar_priority"
+        android:icon="@drawable/ic_priority_rv"
+        android:orderInCategory="2"
+        android:title="Priority"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/bar_plus_box"
+        android:icon="@drawable/ic_plus"
+        android:orderInCategory="1"
+        android:title="Options"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/bar_dots"
+        android:layout_width="wrap_content"
+        android:icon="@drawable/ic_dots"
+        android:orderInCategory="3"
+        android:title="More Options"
+        app:showAsAction="always" />
+</menu>

@@ -19,5 +19,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/nt_add_dots_circle_nav_drawer" />
+        app:menu="@menu/add_dots_circle_nav_drawer" />
 </android.support.constraint.ConstraintLayout>

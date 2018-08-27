@@ -18,4 +18,5 @@
     <color name="bottomAppbarBackgroundColor">@color/colorPrimary</color>
     <color name="bottomAppBarIconItemColor">#000000</color>
     <color name="bottomAppBarItemTextColor">#000000</color>
+    <color name="allNoteBackgroundColor">#dadada</color>
 </resources>

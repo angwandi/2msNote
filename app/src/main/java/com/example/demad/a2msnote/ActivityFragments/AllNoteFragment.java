@@ -12,7 +12,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,6 +29,8 @@ import com.example.demad.a2msnote.ui.AllNoteNavDrawerFragment;
 
 import java.util.Objects;
 
+import static android.support.design.bottomappbar.BottomAppBar.FAB_ALIGNMENT_MODE_CENTER;
+
 /**
  * All Notes {@link Fragment} subclass.
  */
@@ -44,6 +45,7 @@ public class AllNoteFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("CommitTransaction")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -51,22 +53,7 @@ public class AllNoteFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.all_note_fragment, container, false);
         //Set up bottom app bar
-        bottomAppBar = view.findViewById(R.id._nt_add_bottom_app_bar);
         setUpBar(view);
-        bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.home:
-                        AllNoteNavDrawerFragment allNoteNavDrawerFragment = new AllNoteNavDrawerFragment();
-                        assert getFragmentManager() != null;
-                        allNoteNavDrawerFragment.show(getFragmentManager(), allNoteNavDrawerFragment.getTag());
-                        return true;
-                    default:
-                }
-                return true;
-            }
-        });
         //set up fab
         floatingActionButton = view.findViewById(R.id.nt_add_fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -94,13 +81,16 @@ public class AllNoteFragment extends Fragment {
     private void setUpBar(View view) {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
+            bottomAppBar = view.findViewById(R.id.all_note_bottom_app_bar);
             activity.setSupportActionBar(bottomAppBar);
+            bottomAppBar.setFabAlignmentMode(FAB_ALIGNMENT_MODE_CENTER);
+
         }
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
-        menuInflater.inflate(R.menu.nt_bar_all_note_menu, menu);
+        menuInflater.inflate(R.menu.bar_all_note_menu, menu);
         this.menu1 = menu;
         super.onCreateOptionsMenu(menu, menuInflater);
     }
@@ -110,11 +100,11 @@ public class AllNoteFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-           /* case R.id.bar_all_note_menu:
+            case android.R.id.home:
                 AllNoteNavDrawerFragment allNoteNavDrawerFragment = new AllNoteNavDrawerFragment();
                 assert getFragmentManager() != null;
                 allNoteNavDrawerFragment.show(getFragmentManager(), allNoteNavDrawerFragment.getTag());
-                return true;*/
+                return true;
             case R.id.bar_all_note_search:
                 Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
                 return true;
@@ -130,8 +120,6 @@ public class AllNoteFragment extends Fragment {
     public void onPrepareOptionsMenu(final Menu menu) {
         final MenuItem list = menu.findItem(R.id.bar_all_note_list_view);
         final MenuItem stag = menu.findItem(R.id.bar_all_note_staggered_view);
-        /*menu.findItem(R.id.bar_all_note_list_view).setVisible(false);
-        menu.findItem(R.id.bar_all_note_staggered_view).setVisible(true);*/
         menu.findItem(R.id.bar_all_note_list_view).setOnMenuItemClickListener(new OnMenuItemClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
