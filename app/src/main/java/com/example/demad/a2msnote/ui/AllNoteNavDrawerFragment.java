@@ -51,11 +51,15 @@ public class AllNoteNavDrawerFragment extends BottomSheetDialogFragment {
                         Toast.makeText(navigationView.getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
                         AllNoteNavDrawerFragment.this.dismiss();
                         return true;
-                    case R.id.group_nav_all_note_labels:
+                    case R.id.nav_all_note_Labels:
                         Toast.makeText(navigationView.getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
                         AllNoteNavDrawerFragment.this.dismiss();
                         return true;
-                    case R.id.group_nav_all_note_deletes:
+                    case R.id.nav_all_note_archive:
+                        Toast.makeText(navigationView.getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                        AllNoteNavDrawerFragment.this.dismiss();
+                        return true;
+                    case R.id.nav_all_note_deletes:
                         Toast.makeText(navigationView.getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
                         AllNoteNavDrawerFragment.this.dismiss();
                         return true;

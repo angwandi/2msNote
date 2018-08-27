@@ -12,10 +12,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -25,6 +27,8 @@ import com.example.demad.a2msnote.NoteGridItemDecoration;
 import com.example.demad.a2msnote.R;
 import com.example.demad.a2msnote.data.NoteEntry;
 import com.example.demad.a2msnote.ui.AllNoteNavDrawerFragment;
+
+import java.util.Objects;
 
 /**
  * All Notes {@link Fragment} subclass.
@@ -45,10 +49,24 @@ public class AllNoteFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.nt_all_note_fragment, container, false);
+        View view = inflater.inflate(R.layout.all_note_fragment, container, false);
         //Set up bottom app bar
         bottomAppBar = view.findViewById(R.id._nt_add_bottom_app_bar);
         setUpBar(view);
+        bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.home:
+                        AllNoteNavDrawerFragment allNoteNavDrawerFragment = new AllNoteNavDrawerFragment();
+                        assert getFragmentManager() != null;
+                        allNoteNavDrawerFragment.show(getFragmentManager(), allNoteNavDrawerFragment.getTag());
+                        return true;
+                    default:
+                }
+                return true;
+            }
+        });
         //set up fab
         floatingActionButton = view.findViewById(R.id.nt_add_fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -92,16 +110,17 @@ public class AllNoteFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.bar_all_note_menu:
+           /* case R.id.bar_all_note_menu:
                 AllNoteNavDrawerFragment allNoteNavDrawerFragment = new AllNoteNavDrawerFragment();
                 assert getFragmentManager() != null;
                 allNoteNavDrawerFragment.show(getFragmentManager(), allNoteNavDrawerFragment.getTag());
-                return true;
+                return true;*/
             case R.id.bar_all_note_search:
                 Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                return true;
             default:
+                return super.onOptionsItemSelected(item);
         }
-        return true;
     }
 
     /*Change Staggered view to list View
@@ -113,7 +132,7 @@ public class AllNoteFragment extends Fragment {
         final MenuItem stag = menu.findItem(R.id.bar_all_note_staggered_view);
         /*menu.findItem(R.id.bar_all_note_list_view).setVisible(false);
         menu.findItem(R.id.bar_all_note_staggered_view).setVisible(true);*/
-        menu.findItem(R.id.bar_all_note_list_view).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        menu.findItem(R.id.bar_all_note_list_view).setOnMenuItemClickListener(new OnMenuItemClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
@@ -123,10 +142,11 @@ public class AllNoteFragment extends Fragment {
                 return true;
             }
         });
-        menu.findItem(R.id.bar_all_note_staggered_view).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        menu.findItem(R.id.bar_all_note_staggered_view).setOnMenuItemClickListener(new OnMenuItemClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
+                Objects.requireNonNull(getActivity()).invalidateOptionsMenu();
                 list.setVisible(isVisible());
                 stag.setVisible(false);
                 Toast.makeText(getContext(), "List", Toast.LENGTH_SHORT).show();

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/black">
+    android:layout_height="wrap_content"
+    android:background="@color/bottomSheetBackgroundColor">
 
     <TextView
         android:id="@+id/all_note_account_name_nav_drawer_tv"
@@ -19,11 +19,10 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Innocent Dema Angwandia"
-        android:textColor="@android:color/white"
+        android:textColor="@color/navDrawerItemTextColor"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/all_note_account_mail_nav_drawer_tv"
-        app:layout_constraintEnd_toStartOf="@+id/close_imageview"
         app:layout_constraintStart_toEndOf="@+id/all_note_account_vector_nav_drawer"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +36,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="demsdema217@gmail.com"
-        android:textColor="@android:color/white"
+        android:textColor="@color/navDrawerItemTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/all_note_account_name_nav_drawer_tv"
         app:layout_constraintTop_toBottomOf="@+id/all_note_account_name_nav_drawer_tv" />
@@ -49,7 +48,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:background="@drawable/ic_account_vector"
-        android:backgroundTint="#dedede"
+        android:backgroundTint="@color/navDrawerIconItemColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/all_note_account_name_nav_drawer_tv"
         tools:targetApi="lollipop" />

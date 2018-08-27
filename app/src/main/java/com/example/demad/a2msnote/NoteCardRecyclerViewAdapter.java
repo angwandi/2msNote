@@ -24,7 +24,7 @@ public class NoteCardRecyclerViewAdapter extends RecyclerView.Adapter<NoteCardVi
     @Override
     public NoteCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View layoutView =
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.nt_main, parent, false);
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.main, parent, false);
         return new NoteCardViewHolder(layoutView);
     }
 

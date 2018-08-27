@@ -4,25 +4,22 @@
     <item
         android:id="@+id/bar_all_note_menu"
         android:icon="@drawable/nt_menu"
-        android:orderInCategory="1"
         android:title="Menu"
         app:showAsAction="always" />
     <item
         android:id="@+id/bar_all_note_search"
         android:icon="@drawable/nt_search"
-        android:orderInCategory="3"
         android:title="@string/nt_search_title"
-        app:showAsAction="always" />
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
     <item
         android:id="@+id/bar_all_note_list_view"
         android:icon="@drawable/nt_stream"
-        android:orderInCategory="2"
         android:title="@string/nt_filter_title"
         app:showAsAction="always" />
     <item
         android:id="@+id/bar_all_note_staggered_view"
         android:icon="@drawable/ic_view_staggered"
-        android:orderInCategory="2"
         android:title="@string/nt_staggered_view"
         android:visible="false"
         app:showAsAction="always" />

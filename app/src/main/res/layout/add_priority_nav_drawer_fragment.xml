@@ -5,7 +5,7 @@
     android:id="@+id/priority_navigation_view_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/black"
+    android:background="@color/bottomSheetBackgroundColor"
     app:behavior_hideable="true"
     app:layout_behavior="@string/bottom_sheet_behavior">
 
@@ -21,24 +21,18 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Select Note Prioriry"
-        android:textColor="@android:color/white"
+        android:textColor="@color/navDrawerItemTextColor"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/close_imageview"
+        app:layout_constraintEnd_toStartOf="@+id/close_imageView"
         app:layout_constraintStart_toEndOf="@+id/all_note_account_vector_nav_drawer"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/all_note_main_navigation_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="4dp"
-        android:background="@android:color/black"
-        android:paddingBottom="40dp"
-        android:theme="@style/NavigationDrawerStyle"
-        app:itemIconTint="#edefeb"
-        app:itemTextColor="@android:color/white"
+        style="@style/Widget.Note.NavigationView"
+        app:itemIconTint="@color/navDrawerIconItemColor"
+        app:itemTextColor="@color/navDrawerItemTextColor"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
@@ -54,7 +48,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Low priority is selected by default"
-        android:textColor="@android:color/white"
+        android:textColor="@color/navDrawerItemTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/all_note_account_name_nav_drawer_tv"
         app:layout_constraintTop_toBottomOf="@+id/all_note_account_name_nav_drawer_tv" />
@@ -66,7 +60,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:background="@drawable/ic_priority_nav_drawer"
-        android:backgroundTint="#edefeb"
+        android:backgroundTint="@color/navDrawerIconItemColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/all_note_account_name_nav_drawer_tv"
         tools:targetApi="lollipop" />
@@ -85,7 +79,7 @@
         app:layout_constraintTop_toBottomOf="@+id/all_note_account_mail_nav_drawer_tv" />
 
     <ImageView
-        android:id="@+id/close_imageview"
+        android:id="@+id/close_imageView"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginBottom="8dp"
@@ -93,7 +87,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/ic_close_nav_drawer"
-        android:backgroundTint="#edefeb"
+        android:backgroundTint="@color/navDrawerIconItemColor"
+        android:contentDescription="close Image"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/all_note_account_mail_nav_drawer_tv"
         app:layout_constraintEnd_toEndOf="parent"

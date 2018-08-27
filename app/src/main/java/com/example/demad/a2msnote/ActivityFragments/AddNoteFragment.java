@@ -47,7 +47,7 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.nt_add_note_fragment, container, false);
+        View view = inflater.inflate(R.layout.add_note_fragment, container, false);
         add_bottomAppBar = view.findViewById(R.id._nt_add_bottom_app_bar);
         add_fab = view.findViewById(R.id.nt_add_fab);
         description = view.findViewById(R.id.list_item_edit_text);
@@ -61,6 +61,9 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
             activity.setSupportActionBar(add_bottomAppBar);
+            android.support.v7.app.ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+            assert actionBar != null;
+            actionBar.setDisplayHomeAsUpEnabled(true);
             add_bottomAppBar.replaceMenu(R.menu.nt_bar_add_note_menu);
             int fab_alignment = BottomAppBar.FAB_ALIGNMENT_MODE_END;
             add_bottomAppBar.setFabAlignmentMode(fab_alignment);
@@ -82,28 +85,34 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
                 PriorityNavDrawerFragment priorityNavD = new PriorityNavDrawerFragment();
                 assert getFragmentManager() != null;
                 priorityNavD.show(getFragmentManager(), priorityNavD.getTag());
-                break;
+                return true;
             case R.id.bar_plus_box:
                 PlusBoxFragment plusBoxNavD = new PlusBoxFragment();
                 assert getFragmentManager() != null;
                 plusBoxNavD.show(getFragmentManager(), plusBoxNavD.getTag());
-                break;
+                return true;
             case R.id.bar_dots:
                 DotCircleFragment dotCircleNavD = new DotCircleFragment();
                 assert getFragmentManager() != null;
                 dotCircleNavD.show(getFragmentManager(), dotCircleNavD.getTag());
-                break;
+                return true;
             case R.id.bar_back:
-                assert getFragmentManager() != null;
-                getFragmentManager().getBackStackEntryCount();
-                getFragmentManager().popBackStack();
-                break;
+                Back();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return true;
     }
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
+    }
+
+    /*Implement Back Navigation*/
+    public void Back() {
+        assert getFragmentManager() != null;
+        getFragmentManager().getBackStackEntryCount();
+        getFragmentManager().popBackStack();
     }
 }

@@ -33,7 +33,7 @@ public class PlusBoxFragment extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.nt_add_plus_box_fragment, container, false);
+        View view = inflater.inflate(R.layout.add_plus_box_fragment, container, false);
         plus_box_navigationView = view.findViewById(R.id.nt_add_plus_box_navigation_view);
         return view;
     }

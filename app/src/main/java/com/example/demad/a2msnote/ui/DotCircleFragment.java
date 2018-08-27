@@ -33,7 +33,7 @@ public class DotCircleFragment extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.nt_add_dot_circle_fragment, container, false);
+        View view = inflater.inflate(R.layout.add_dot_circle_fragment, container, false);
         dot_circle_navigationView = view.findViewById(R.id.nt_add_dots_circle_navigation_view);
         return view;
     }

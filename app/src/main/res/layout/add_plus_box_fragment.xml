@@ -2,23 +2,20 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/priority_navigation_view_layout"
+    android:id="@+id/plus_box_navigation_view_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:behavior_hideable="true"
     app:layout_behavior="@string/bottom_sheet_behavior"
-    tools:context=".ui.AllNoteNavDrawerFragment">
+    tools:context=".ui.PlusBoxFragment">
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/all_note_main_navigation_view"
-        app:headerLayout="@layout/all_note_nav_drawer_header"
+        android:id="@+id/nt_add_plus_box_navigation_view"
         style="@style/Widget.Note.NavigationView"
         app:itemIconTint="@color/navDrawerIconItemColor"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:itemTextColor="@color/navDrawerItemTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/all_note_nav_drawer"
-        app:itemTextColor="@color/navDrawerItemTextColor"
-        tools:targetApi="lollipop" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/nt_add_plus_box_nav_drawer" />
 </android.support.constraint.ConstraintLayout>
-

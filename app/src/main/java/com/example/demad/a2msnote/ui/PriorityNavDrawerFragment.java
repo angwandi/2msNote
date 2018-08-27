@@ -30,9 +30,9 @@ public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.nt_add_priority_nav_drawer_fragment, container, false);
+        View view = inflater.inflate(R.layout.add_priority_nav_drawer_fragment, container, false);
         navigationView = view.findViewById(R.id.all_note_main_navigation_view);
-        imageView = view.findViewById(R.id.close_imageview);
+        imageView = view.findViewById(R.id.close_imageView);
         return view;
     }
 

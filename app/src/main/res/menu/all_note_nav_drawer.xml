@@ -1,38 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/nav_all_note_Reminders"
         android:icon="@drawable/ic_reminder"
         android:orderInCategory="1"
         android:title="Reminders" />
-    <group
-        android:id="@+id/group_nav_all_note_labels"
-        android:orderInCategory="2">
-        <item
-            android:id="@+id/nav_all_note_Labels"
-            android:title="Labels" />
-        <item
-            android:id="@+id/nav_all_note_Labels1"
-            android:icon="@drawable/ic_label"
-            android:title="Labels" />
-    </group>
-    <group
-        android:id="@+id/group_nav_all_note_deletes"
-        android:orderInCategory="3">
-        <item
-            android:id="@+id/nav_all_note_archive"
-            android:icon="@drawable/ic_archive"
-            android:title="Archive" />
-        <item
-            android:id="@+id/nav_all_note_deletes"
-            android:icon="@drawable/ic_delete_black_24dp"
-            android:title="Deletes" />
+    <item
+        android:id="@+id/subLAbels"
+        android:title="SUB Labels"
+        android:tooltipText="@string/app_name"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/nav_all_note_Labels"
+                android:icon="@drawable/ic_label"
+                android:orderInCategory="2"
+                android:title="Labels" />
+            <item
+                android:icon="@drawable/ic_label"
+                android:orderInCategory="2"
+                android:title="Labels" />
+            <item
+                android:icon="@drawable/ic_label"
+                android:orderInCategory="2"
+                android:title="Labels" />
+            <item
+                android:icon="@drawable/ic_label"
+                android:orderInCategory="2"
+                android:title="Labels" />
+            <item
+                android:icon="@drawable/ic_label"
+                android:orderInCategory="2"
+                android:title="Labels" />
+        </menu>
+    </item>
+    <group android:id="@+id/deletes">
+        <item android:title="deletes">
+            <menu>
+                <item
+                    android:id="@+id/nav_all_note_deletes"
+                    android:icon="@drawable/ic_delete_black_24dp"
+                    android:orderInCategory="4"
+                    android:title="Deletes" />
+                <item
+                    android:id="@+id/nav_all_note_Settings"
+                    android:icon="@drawable/ic_settings"
+                    android:orderInCategory="4"
+                    android:title="Settings" />
+            </menu>
+        </item>
     </group>
     <item
-        android:id="@+id/nav_all_note_Settings"
-        android:icon="@drawable/ic_settings"
-        android:orderInCategory="5"
-        android:title="Settings" />
+        android:id="@+id/nav_all_note_archive"
+        android:icon="@drawable/ic_archive"
+        android:orderInCategory="3"
+        android:title="Archive" />
     <item
         android:id="@+id/nav_all_note_Help"
         android:icon="@drawable/ic_help"
