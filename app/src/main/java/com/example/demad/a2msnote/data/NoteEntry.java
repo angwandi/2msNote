@@ -17,6 +17,7 @@ public class NoteEntry {
     private int priority;
     private Date updatedAt;
 
+    @Ignore
     public NoteEntry(String title, String description, int priority, Date updatedAt) {
         this.title = title;
         this.description = description;
@@ -24,7 +25,6 @@ public class NoteEntry {
         this.updatedAt = updatedAt;
     }
 
-    @Ignore
     public NoteEntry(int id, String title, String description, int priority, Date updatedAt) {
         this.id = id;
         this.title = title;

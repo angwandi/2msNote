@@ -17,10 +17,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.demad.a2msnote.R;
+import com.example.demad.a2msnote.data.AppDatabase;
+import com.example.demad.a2msnote.data.NoteEntry;
 import com.example.demad.a2msnote.ui.DotCircleFragment;
 import com.example.demad.a2msnote.ui.PlusBoxFragment;
 import com.example.demad.a2msnote.ui.PriorityNavDrawerFragment;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -28,7 +31,24 @@ import java.util.Objects;
  */
 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 public class AddNoteFragment extends android.support.v4.app.Fragment {
+    // Extra for the Note ID to be received in the intent
+    public static final String EXTRA_NOTE_ID = "extraNoteId";
+    // Extra for the Note ID to be received after rotation
+    public static final String INSTANCE_NOTE_ID = "instanceNoteId";
+    // Constants for priority
+    public static final int PRIORITY_HIGH = 1;
+    public static final int PRIORITY_MEDIUM = 2;
+    public static final int PRIORITY_LOW = 3;
+    // Constant for default note id to be used when not in update mode
+    private static final int DEFAULT_NOTE_ID = -1;
+    // Constant for logging
+    private static final String TAG = AddNoteFragment.class.getSimpleName();
+    // Fields for views
+    private int mNoteId = DEFAULT_NOTE_ID;
+    /*Member variable for the Database*/
+    private AppDatabase mDB;
     private EditText title;
+    private EditText description;
 
     public static android.support.v4.app.Fragment newInstance() {
         return new AddNoteFragment();
@@ -46,7 +66,9 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.add_note_fragment, container, false);
-        EditText description = view.findViewById(R.id.list_item_edit_text);
+        mDB = AppDatabase.getsInstance(getContext());
+        description = view.findViewById(R.id.description_edit_text);
+        title = view.findViewById(R.id.title_edit_text);
         description.requestFocus();
         setUpBottomAppBar(view);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -117,6 +139,7 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Back();
+                onSaveButtonClick();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -126,6 +149,19 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
+    }
+
+    /*onSaveButton is called when the save Button is clicked
+     * it retrieves user input and insert the new data into the underlying database.
+     */
+    public void onSaveButtonClick() {
+        String ntTitle = title.getText().toString().trim();
+        String ntDescription = description.getText().toString().trim();
+        Date date = new Date();
+        int priority = PRIORITY_HIGH;
+        NoteEntry noteEntry = new NoteEntry(ntTitle, ntDescription, priority, date);
+        mDB.noteDao().insertNote(noteEntry);
+        assert getFragmentManager() != null;
     }
 
     /*Implement Back Navigation*/

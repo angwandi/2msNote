@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import com.example.demad.a2msnote.NoteCardRecyclerViewAdapter;
 import com.example.demad.a2msnote.NoteGridItemDecoration;
 import com.example.demad.a2msnote.R;
+import com.example.demad.a2msnote.data.AppDatabase;
 import com.example.demad.a2msnote.data.NoteEntry;
 import com.example.demad.a2msnote.ui.AllNoteNavDrawerFragment;
 
@@ -34,10 +36,13 @@ import static android.support.design.bottomappbar.BottomAppBar.FAB_ALIGNMENT_MOD
 /**
  * All Notes {@link Fragment} subclass.
  */
-public class AllNoteFragment extends Fragment {
+public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAdapter.ItemClickListener {
     Menu menu1;
     FloatingActionButton floatingActionButton;
     BottomAppBar bottomAppBar;
+    private NoteCardRecyclerViewAdapter adapter;
+    // COMPLETED (1) Create AppDatabase member variable for the Database
+    private AppDatabase mDb;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,7 @@ public class AllNoteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.all_note_fragment, container, false);
+        mDb = AppDatabase.getsInstance(getContext());
         //Set up bottom app bar
         setUpBar(view);
         //set up fab
@@ -63,18 +69,38 @@ public class AllNoteFragment extends Fragment {
                 swapFragment();
             }
         });
+/*
+        Initialize member variable for the data base
+*/
+        mDb = AppDatabase.getsInstance(getContext());
         // Set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.nt_add_note_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
-        NoteCardRecyclerViewAdapter adapter;
-        adapter = new NoteCardRecyclerViewAdapter(NoteEntry.initNoteEntryList(getResources()));
+        adapter = new NoteCardRecyclerViewAdapter(getContext(), this, NoteEntry.initNoteEntryList(getResources()));
         recyclerView.setAdapter(adapter);
         //recyclerView Decoration should go here
         //Shrine code lab 102
         int largePadding = getResources().getDimensionPixelOffset(R.dimen.nt_note_grid_spacing);
         int smallPadding = getResources().getDimensionPixelOffset(R.dimen.nt_note_grid_spacing_small);
         recyclerView.addItemDecoration(new NoteGridItemDecoration(largePadding, smallPadding));
+          /*
+         Add a touch helper to the RecyclerView to recognize when a user swipes to delete an item.
+         An ItemTouchHelper enables touch behavior (like swipe and move) on each ViewHolder,
+         and uses callbacks to signal when a user is performing these actions.
+         */
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            // Called when a user swipes left or right on a ViewHolder
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                // Here is where you'll implement swipe to delete
+            }
+        }).attachToRecyclerView(recyclerView);
         return view;
     }
 
@@ -84,7 +110,6 @@ public class AllNoteFragment extends Fragment {
             bottomAppBar = view.findViewById(R.id.all_note_bottom_app_bar);
             activity.setSupportActionBar(bottomAppBar);
             bottomAppBar.setFabAlignmentMode(FAB_ALIGNMENT_MODE_CENTER);
-
         }
     }
 
@@ -144,6 +169,14 @@ public class AllNoteFragment extends Fragment {
         super.onPrepareOptionsMenu(menu);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        //Call the adapter's setNotes method using the result
+        // of the loadAllTasks method from the taskDao
+        adapter.setNotes(mDb.noteDao().loadAllNotes());
+    }
+
     /*Swap to Add Note Fragment*/
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void swapFragment() {
@@ -154,6 +187,10 @@ public class AllNoteFragment extends Fragment {
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void onItemClickListener(int itemId) {
     }
 }
 
