@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+  <EditText
+    android:id="@+id/title_edit_text"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:background="@null"
+    android:hint="@string/hint_title"
+    android:inputType="textMultiLine"
+    android:scrollbars="vertical"
+    android:textStyle="bold"
+    android:verticalScrollbarPosition="right"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <EditText
+    android:id="@+id/description_edit_text"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:background="@null"
+    android:hint="@string/hint_list_item"
+    android:inputType="textMultiLine"
+    android:paddingBottom="58dp"
+    android:scrollbars="vertical"
+    android:verticalScrollbarPosition="right"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/title_edit_text" />
+</android.support.constraint.ConstraintLayout>

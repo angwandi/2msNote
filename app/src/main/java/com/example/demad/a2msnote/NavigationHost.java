@@ -11,5 +11,5 @@ public interface NavigationHost {
      * Trigger a navigation to the specified fragment, optionally adding a transaction to the back
      * stack to make this navigation reversible.
      */
-    void navigateTo(AllNoteFragment fragment, boolean addToBackstack);
+    void navigateTo(AllNoteFragment fragment, boolean addToBackStack);
 }

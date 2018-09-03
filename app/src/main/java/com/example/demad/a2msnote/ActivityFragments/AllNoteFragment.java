@@ -1,6 +1,7 @@
 package com.example.demad.a2msnote.ActivityFragments;
 
 import android.annotation.SuppressLint;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,8 +11,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,7 +33,6 @@ import com.example.demad.a2msnote.ui.AllNoteNavDrawerFragment;
 import java.util.Objects;
 
 import static android.support.design.bottomappbar.BottomAppBar.FAB_ALIGNMENT_MODE_CENTER;
-
 /**
  * All Notes {@link Fragment} subclass.
  */
@@ -61,7 +61,7 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
         //Set up bottom app bar
         setUpBar(view);
         //set up fab
-        floatingActionButton = view.findViewById(R.id.nt_add_fab);
+        floatingActionButton = view.findViewById(R.id.all_note_fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -76,11 +76,18 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
         // Set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.nt_add_note_recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
+        //Portrait and Landscape : this might need to be moved later after revisiting fragment life cycle, works fine for now
+        StaggeredGridLayoutManager gridLayoutPortrait = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager gridLayoutLandscape = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        if (Objects.requireNonNull(getActivity()).getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            recyclerView.setLayoutManager(gridLayoutPortrait);
+        } else {
+            recyclerView.setLayoutManager(gridLayoutLandscape);
+        }
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, true));
         adapter = new NoteCardRecyclerViewAdapter(getContext(), this, NoteEntry.initNoteEntryList(getResources()));
         recyclerView.setAdapter(adapter);
         //recyclerView Decoration should go here
-        //Shrine code lab 102
         int largePadding = getResources().getDimensionPixelOffset(R.dimen.nt_note_grid_spacing);
         int smallPadding = getResources().getDimensionPixelOffset(R.dimen.nt_note_grid_spacing_small);
         recyclerView.addItemDecoration(new NoteGridItemDecoration(largePadding, smallPadding));
@@ -91,13 +98,14 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
          */
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
 
             // Called when a user swipes left or right on a ViewHolder
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 // Here is where you'll implement swipe to delete
             }
         }).attachToRecyclerView(recyclerView);
@@ -145,6 +153,16 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
     public void onPrepareOptionsMenu(final Menu menu) {
         final MenuItem list = menu.findItem(R.id.bar_all_note_list_view);
         final MenuItem stag = menu.findItem(R.id.bar_all_note_staggered_view);
+        menu.findItem(R.id.bar_all_note_staggered_view).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                list.setVisible(isVisible());
+                stag.setVisible(false);
+                Toast.makeText(getContext(), "List", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
         menu.findItem(R.id.bar_all_note_list_view).setOnMenuItemClickListener(new OnMenuItemClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -152,17 +170,6 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
                 list.setVisible(false);
                 stag.setVisible(isVisible());
                 Toast.makeText(getContext(), "Staggered", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
-        menu.findItem(R.id.bar_all_note_staggered_view).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                Objects.requireNonNull(getActivity()).invalidateOptionsMenu();
-                list.setVisible(isVisible());
-                stag.setVisible(false);
-                Toast.makeText(getContext(), "List", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.bottomappbar.BottomAppBar;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -25,7 +26,6 @@ import com.example.demad.a2msnote.ui.PriorityNavDrawerFragment;
 
 import java.util.Date;
 import java.util.Objects;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -49,6 +49,7 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
     private AppDatabase mDB;
     private EditText title;
     private EditText description;
+    private FloatingActionButton fab;
 
     public static android.support.v4.app.Fragment newInstance() {
         return new AddNoteFragment();
@@ -70,6 +71,13 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
         description = view.findViewById(R.id.description_edit_text);
         title = view.findViewById(R.id.title_edit_text);
         description.requestFocus();
+        fab = view.findViewById(R.id.add_note_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onSaveButtonClick();
+            }
+        });
         setUpBottomAppBar(view);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setUpToolbar(view);
@@ -139,7 +147,6 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Back();
-                onSaveButtonClick();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -162,6 +169,8 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
         NoteEntry noteEntry = new NoteEntry(ntTitle, ntDescription, priority, date);
         mDB.noteDao().insertNote(noteEntry);
         assert getFragmentManager() != null;
+        getFragmentManager().getBackStackEntryCount();
+        getFragmentManager().popBackStack();
     }
 
     /*Implement Back Navigation*/

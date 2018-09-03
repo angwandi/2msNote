@@ -15,7 +15,6 @@ import com.example.demad.a2msnote.data.NoteEntry;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
-
 /**
  * Adapter used to show a simple grid of notes.
  */
