@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.demad.a2msnote.AppExecutors;
 import com.example.demad.a2msnote.NoteCardRecyclerViewAdapter;
 import com.example.demad.a2msnote.NoteGridItemDecoration;
 import com.example.demad.a2msnote.R;
@@ -31,6 +32,7 @@ import com.example.demad.a2msnote.data.AppDatabase;
 import com.example.demad.a2msnote.data.NoteEntry;
 import com.example.demad.a2msnote.ui.AllNoteNavDrawerFragment;
 
+import java.util.List;
 import java.util.Objects;
 
 import static android.support.design.bottomappbar.BottomAppBar.FAB_ALIGNMENT_MODE_CENTER;
@@ -43,7 +45,6 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
     BottomAppBar bottomAppBar;
     private NoteCardRecyclerViewAdapter adapter;
     RecyclerView recyclerView;
-
     // COMPLETED (1) Create AppDatabase member variable for the Database
     private AppDatabase mDb;
 
@@ -109,8 +110,17 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
 
             // Called when a user swipes left or right on a ViewHolder
             @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                // Here is where you'll implement swipe to delete
+            public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                // swipe to delete
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        int position = viewHolder.getAdapterPosition();
+                        List<NoteEntry> notes = adapter.getNotes();
+                        mDb.noteDao().deleteNote(notes.get(position));
+                        retrieveTasks();
+                    }
+                });
             }
         }).attachToRecyclerView(recyclerView);
         return view;
@@ -191,7 +201,7 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
         super.onResume();
         //Call the adapter's setNotes method using the result
         // of the loadAllTasks method from the taskDao
-        adapter.setNotes(mDb.noteDao().loadAllNotes());
+        retrieveTasks();
     }
 
     /*Swap to Add Note Fragment*/
@@ -206,10 +216,27 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
         transaction.commit();
     }
 
+    private void retrieveTasks() {
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void run() {
+                final List<NoteEntry> notes = mDb.noteDao().loadAllNotes();
+                // We will be able to simplify this once we learn more
+                // about Android Architecture Components
+                Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.setNotes(notes);
+                    }
+                });
+            }
+        });
+    }
+
     @Override
     public void onItemClickListener(int itemId) {
     }
-
 }
 
 

@@ -78,6 +78,11 @@ public class NoteCardRecyclerViewAdapter extends RecyclerView.Adapter<NoteCardRe
         return noteEntries.size();
     }
 
+    //  Add a getNotes method that returns noteEntries
+    public List<NoteEntry> getNotes() {
+        return noteEntries;
+    }
+
     /**
      * When data changes, this method updates the list of taskEntries
      * and notifies the adapter to use the new values on it
