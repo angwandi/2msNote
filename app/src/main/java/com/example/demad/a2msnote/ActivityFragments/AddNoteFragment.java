@@ -1,6 +1,7 @@
 package com.example.demad.a2msnote.ActivityFragments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -49,7 +50,7 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
     private AppDatabase mDB;
     private EditText title;
     private EditText description;
-    private FloatingActionButton fab;
+    FloatingActionButton fab;
 
     public static android.support.v4.app.Fragment newInstance() {
         return new AddNoteFragment();
@@ -67,15 +68,27 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.add_note_fragment, container, false);
-        mDB = AppDatabase.getsInstance(getContext());
         description = view.findViewById(R.id.description_edit_text);
         title = view.findViewById(R.id.title_edit_text);
+        //Initialize member variable for the data base
+        mDB = AppDatabase.getsInstance(getContext());
+        if (savedInstanceState != null && savedInstanceState.containsKey(INSTANCE_NOTE_ID)) {
+            mNoteId = savedInstanceState.getInt(INSTANCE_NOTE_ID, DEFAULT_NOTE_ID);
+        }
+        Intent intent = getActivity().getIntent();
+        if (intent != null && intent.hasExtra(EXTRA_NOTE_ID)) {
+            fab.setBackground(getActivity().getDrawable(R.drawable.ic_save));
+            if (mNoteId == DEFAULT_NOTE_ID) {
+                // populate the UI
+            }
+        }
         description.requestFocus();
         fab = view.findViewById(R.id.add_note_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onSaveButtonClick();
+                AddNoteFragment.this.Back();
             }
         });
         setUpBottomAppBar(view);
@@ -146,7 +159,7 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Back();
+                AddNoteFragment.this.Back();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -158,6 +171,14 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
         super.onPrepareOptionsMenu(menu);
     }
 
+    /**
+     * populateUI would be called to populate the UI when in update mode
+     *
+     * @param noteEntry the NoteEntry to populate the UI
+     */
+    private void populateUI(NoteEntry noteEntry) {
+    }
+
     /*onSaveButton is called when the save Button is clicked
      * it retrieves user input and insert the new data into the underlying database.
      */
@@ -165,12 +186,10 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
         String ntTitle = title.getText().toString().trim();
         String ntDescription = description.getText().toString().trim();
         Date date = new Date();
+        PriorityNavDrawerFragment prio = new PriorityNavDrawerFragment();
         int priority = PRIORITY_HIGH;
         NoteEntry noteEntry = new NoteEntry(ntTitle, ntDescription, priority, date);
         mDB.noteDao().insertNote(noteEntry);
-        assert getFragmentManager() != null;
-        getFragmentManager().getBackStackEntryCount();
-        getFragmentManager().popBackStack();
     }
 
     /*Implement Back Navigation*/

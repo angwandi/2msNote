@@ -11,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -41,6 +42,7 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
     FloatingActionButton floatingActionButton;
     BottomAppBar bottomAppBar;
     private NoteCardRecyclerViewAdapter adapter;
+    RecyclerView recyclerView;
     // COMPLETED (1) Create AppDatabase member variable for the Database
     private AppDatabase mDb;
 
@@ -74,11 +76,12 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
 */
         mDb = AppDatabase.getsInstance(getContext());
         // Set up the RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.nt_add_note_recycler_view);
+        recyclerView = view.findViewById(R.id.nt_add_note_recycler_view);
         recyclerView.setHasFixedSize(true);
         //Portrait and Landscape : this might need to be moved later after revisiting fragment life cycle, works fine for now
         StaggeredGridLayoutManager gridLayoutPortrait = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         StaggeredGridLayoutManager gridLayoutLandscape = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        gridLayoutPortrait.setReverseLayout(false);
         if (Objects.requireNonNull(getActivity()).getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             recyclerView.setLayoutManager(gridLayoutPortrait);
         } else {
@@ -153,23 +156,29 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
     public void onPrepareOptionsMenu(final Menu menu) {
         final MenuItem list = menu.findItem(R.id.bar_all_note_list_view);
         final MenuItem stag = menu.findItem(R.id.bar_all_note_staggered_view);
-        menu.findItem(R.id.bar_all_note_staggered_view).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                list.setVisible(isVisible());
-                stag.setVisible(false);
-                Toast.makeText(getContext(), "List", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
         menu.findItem(R.id.bar_all_note_list_view).setOnMenuItemClickListener(new OnMenuItemClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
                 list.setVisible(false);
                 stag.setVisible(isVisible());
-                Toast.makeText(getContext(), "Staggered", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+        menu.findItem(R.id.bar_all_note_staggered_view).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                StaggeredGridLayoutManager gridLayoutPortrait = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                StaggeredGridLayoutManager gridLayoutLandscape = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+                if (Objects.requireNonNull(getActivity()).getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    recyclerView.setLayoutManager(gridLayoutPortrait);
+                } else {
+                    recyclerView.setLayoutManager(gridLayoutLandscape);
+                }
+                list.setVisible(isVisible());
+                stag.setVisible(false);
                 return true;
             }
         });

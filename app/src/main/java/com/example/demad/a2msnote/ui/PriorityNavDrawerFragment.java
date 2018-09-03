@@ -19,13 +19,16 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.demad.a2msnote.R;
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
     NavigationView navigationView;
     ImageView imageView;
+    // Constants for priority
+    public static final int PRIORITY_HIGH = 1;
+    public static final int PRIORITY_MEDIUM = 2;
+    public static final int PRIORITY_LOW = 3;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -43,21 +46,27 @@ public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
          * to be moved later todo
          * */
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            int priority = 1;
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_low:
+                        priority = PRIORITY_LOW;
                         Toast.makeText(navigationView.getContext(), "Low priority selected", Toast.LENGTH_SHORT).show();
                         PriorityNavDrawerFragment.this.dismiss();
-                        break;
+                        return true;
                     case R.id.nav_medium:
+                        priority = PRIORITY_MEDIUM;
                         Toast.makeText(navigationView.getContext(), "Medium priority selected", Toast.LENGTH_SHORT).show();
                         PriorityNavDrawerFragment.this.dismiss();
-                        break;
+                        return true;
                     case R.id.nav_high:
+                        priority = PRIORITY_HIGH;
                         Toast.makeText(navigationView.getContext(), "High priority selected", Toast.LENGTH_SHORT).show();
                         PriorityNavDrawerFragment.this.dismiss();
-                        break;
+                        return true;
+                    default:
                 }
                 return true;
             }
@@ -107,6 +116,7 @@ public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
         });
         return dialog;
     }
+
 
     /*Helper Method to hide the horrible scroll bar*/
     public final void disableNavigationViewScrollbars(NavigationView navigationView) {

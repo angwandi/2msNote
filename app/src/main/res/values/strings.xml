@@ -17,4 +17,8 @@
     <string name="main_menu_delete_all_notes">Delete All Notes</string>
     <string name="nt_staggered_view">Staggered View</string>
   <string name="save_button">Save</string>
+  <string name="priority">1</string>
+    <string name="edited_date">Edited : 15/03/2018</string>
+    <string name="description">description</string>
+    <string name="title">Title</string>
 </resources>
