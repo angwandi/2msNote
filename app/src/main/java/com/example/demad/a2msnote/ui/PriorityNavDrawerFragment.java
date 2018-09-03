@@ -117,7 +117,6 @@ public class PriorityNavDrawerFragment extends BottomSheetDialogFragment {
         return dialog;
     }
 
-
     /*Helper Method to hide the horrible scroll bar*/
     public final void disableNavigationViewScrollbars(NavigationView navigationView) {
         View view = navigationView != null ? navigationView.getChildAt(0) : null;

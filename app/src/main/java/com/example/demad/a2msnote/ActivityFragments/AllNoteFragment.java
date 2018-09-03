@@ -43,6 +43,7 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
     BottomAppBar bottomAppBar;
     private NoteCardRecyclerViewAdapter adapter;
     RecyclerView recyclerView;
+
     // COMPLETED (1) Create AppDatabase member variable for the Database
     private AppDatabase mDb;
 
@@ -208,6 +209,7 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
     @Override
     public void onItemClickListener(int itemId) {
     }
+
 }
 
 
