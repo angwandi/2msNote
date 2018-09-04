@@ -1,6 +1,7 @@
 package com.example.demad.a2msnote.ActivityFragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,27 +26,28 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.demad.a2msnote.AppExecutors;
-import com.example.demad.a2msnote.NoteCardRecyclerViewAdapter;
+import com.example.demad.a2msnote.NoteAdapter;
 import com.example.demad.a2msnote.NoteGridItemDecoration;
 import com.example.demad.a2msnote.R;
-import com.example.demad.a2msnote.data.AppDatabase;
-import com.example.demad.a2msnote.data.NoteEntry;
+import com.example.demad.a2msnote.database.AppDatabase;
+import com.example.demad.a2msnote.database.NoteEntry;
 import com.example.demad.a2msnote.ui.AllNoteNavDrawerFragment;
 
 import java.util.List;
 import java.util.Objects;
 
 import static android.support.design.bottomappbar.BottomAppBar.FAB_ALIGNMENT_MODE_CENTER;
+import static com.example.demad.a2msnote.ActivityFragments.AddNoteFragment.EXTRA_NOTE_ID;
 /**
  * All Notes {@link Fragment} subclass.
  */
-public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAdapter.ItemClickListener {
+public class AllNoteFragment extends Fragment implements NoteAdapter.ItemClickListener {
     Menu menu1;
     FloatingActionButton floatingActionButton;
     BottomAppBar bottomAppBar;
-    private NoteCardRecyclerViewAdapter adapter;
+    private NoteAdapter adapter;
     RecyclerView recyclerView;
-    // COMPLETED (1) Create AppDatabase member variable for the Database
+    //Create AppDatabase member variable for the Database
     private AppDatabase mDb;
 
     @Override
@@ -90,7 +92,7 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
             recyclerView.setLayoutManager(gridLayoutLandscape);
         }
         //recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, true));
-        adapter = new NoteCardRecyclerViewAdapter(getContext(), this, NoteEntry.initNoteEntryList(getResources()));
+        adapter = new NoteAdapter(getContext(), this, NoteEntry.initNoteEntryList(getResources()));
         recyclerView.setAdapter(adapter);
         //recyclerView Decoration should go here
         int largePadding = getResources().getDimensionPixelOffset(R.dimen.nt_note_grid_spacing);
@@ -204,18 +206,6 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
         retrieveTasks();
     }
 
-    /*Swap to Add Note Fragment*/
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void swapFragment() {
-        Fragment fragment;
-        fragment = AddNoteFragment.newInstance();
-        assert getFragmentManager() != null;
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
     private void retrieveTasks() {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -234,8 +224,28 @@ public class AllNoteFragment extends Fragment implements NoteCardRecyclerViewAda
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onItemClickListener(int itemId) {
+        AddNoteFragment fragment = new AddNoteFragment();
+        Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+        assert getFragmentManager() != null;
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    /*Swap to Add Note Fragment*/
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void swapFragment() {
+        Fragment fragment;
+        fragment = AddNoteFragment.newInstance();
+        assert getFragmentManager() != null;
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
 

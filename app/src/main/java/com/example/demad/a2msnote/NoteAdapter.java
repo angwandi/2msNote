@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.demad.a2msnote.data.NoteEntry;
+import com.example.demad.a2msnote.database.NoteEntry;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.Locale;
 /**
  * Adapter used to show a simple grid of notes.
  */
-public class NoteCardRecyclerViewAdapter extends RecyclerView.Adapter<NoteCardRecyclerViewAdapter.NoteCardViewHolder> {
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
     // Constant for date format
     private static final String DATE_FORMAT = "dd/MM/yyy";
     // Member variable to handle item clicks
@@ -27,25 +27,25 @@ public class NoteCardRecyclerViewAdapter extends RecyclerView.Adapter<NoteCardRe
     private Context mContext;
     private SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
 
-    public NoteCardRecyclerViewAdapter(Context context, ItemClickListener mItemClickListener, List<NoteEntry> noteEntries) {
-        this.mItemClickListener = mItemClickListener;
+    public NoteAdapter(Context context, ItemClickListener itemClickListener, List<NoteEntry> noteEntries) {
+        this.mItemClickListener = itemClickListener;
         this.noteEntries = noteEntries;
         mContext = context;
     }
 
     @NonNull
     @Override
-    public NoteCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+    public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View layoutView =
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.main, parent, false);
-        return new NoteCardViewHolder(layoutView);
+        return new NoteViewHolder(layoutView);
     }
 
     /**
      * Called by the RecyclerView to display data at a specified position in the Cursor.
      */
     @Override
-    public void onBindViewHolder(@NonNull NoteCardViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
         if (noteEntries != null && position < noteEntries.size()) {
             // Determine the values of the wanted data
             NoteEntry note = noteEntries.get(position);
@@ -119,13 +119,13 @@ public class NoteCardRecyclerViewAdapter extends RecyclerView.Adapter<NoteCardRe
     }
 
     // Inner class for creating ViewHolders
-    public class NoteCardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView noteTitle;
         TextView noteDescription;
         TextView noteDateEdited;
         TextView notePriority;
 
-        public NoteCardViewHolder(@NonNull View itemView) {
+        NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             //TOD: Find and store views from itemView
             noteTitle = itemView.findViewById(R.id.note_title_tv);
@@ -136,7 +136,7 @@ public class NoteCardRecyclerViewAdapter extends RecyclerView.Adapter<NoteCardRe
         }
 
         @Override
-        public void onClick(View view) {
+        public void onClick(final View view) {
             int elementId = noteEntries.get(getAdapterPosition()).getId();
             mItemClickListener.onItemClickListener(elementId);
         }

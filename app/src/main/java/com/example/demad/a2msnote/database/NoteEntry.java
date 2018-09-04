@@ -1,4 +1,4 @@
-package com.example.demad.a2msnote.data;
+package com.example.demad.a2msnote.database;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;

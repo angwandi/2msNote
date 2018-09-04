@@ -16,12 +16,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.EditText;
 
+import com.example.demad.a2msnote.AppExecutors;
 import com.example.demad.a2msnote.R;
-import com.example.demad.a2msnote.data.AppDatabase;
-import com.example.demad.a2msnote.data.NoteEntry;
+import com.example.demad.a2msnote.database.AppDatabase;
+import com.example.demad.a2msnote.database.NoteEntry;
 import com.example.demad.a2msnote.ui.DotCircleFragment;
 import com.example.demad.a2msnote.ui.PlusBoxFragment;
 import com.example.demad.a2msnote.ui.PriorityNavDrawerFragment;
@@ -63,25 +63,50 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
         setHasOptionsMenu(true);
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt(INSTANCE_NOTE_ID, mNoteId);
+        super.onSaveInstanceState(outState);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.add_note_fragment, container, false);
         description = view.findViewById(R.id.description_edit_text);
         title = view.findViewById(R.id.title_edit_text);
         //Initialize member variable for the data base
         mDB = AppDatabase.getsInstance(getContext());
+        //Get the specific Note details for Update or something else
         if (savedInstanceState != null && savedInstanceState.containsKey(INSTANCE_NOTE_ID)) {
             mNoteId = savedInstanceState.getInt(INSTANCE_NOTE_ID, DEFAULT_NOTE_ID);
         }
-        Intent intent = getActivity().getIntent();
+        Intent intent = Objects.requireNonNull(getActivity()).getIntent();
         if (intent != null && intent.hasExtra(EXTRA_NOTE_ID)) {
             fab.setBackground(getActivity().getDrawable(R.drawable.ic_save));
             if (mNoteId == DEFAULT_NOTE_ID) {
                 // populate the UI
+                //Assign the value of EXTRA_NOTE_ID in the intent to mNoteId
+                // Use DEFAULT_NOTE_ID as the default
+                mNoteId = intent.getIntExtra(EXTRA_NOTE_ID, DEFAULT_NOTE_ID);
+                // Get the diskIO Executor from the instance of AppExecutors and
+                // call the diskIO execute method with a new Runnable and implement its run method
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        final NoteEntry note = mDB.noteDao().loadNoteById(mNoteId);
+                        //I will be able to simplify this later on
+                        //using Android Architecture Component todo
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                populateUI(note);
+                            }
+                        });
+                    }
+                });
             }
         }
         description.requestFocus();
@@ -176,9 +201,15 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
     /**
      * populateUI would be called to populate the UI when in update mode
      *
-     * @param noteEntry the NoteEntry to populate the UI
+     * @param note the NoteEntry to populate the UI
      */
-    private void populateUI(NoteEntry noteEntry) {
+    private void populateUI(NoteEntry note) {
+        if (note == null) {
+            return;
+        }
+        title.setText(note.getTitle());
+        description.setText(note.getDescription());
+        //priority can also be updated
     }
 
     /*onSaveButton is called when the save Button is clicked
@@ -188,10 +219,20 @@ public class AddNoteFragment extends android.support.v4.app.Fragment {
         String ntTitle = title.getText().toString().trim();
         String ntDescription = description.getText().toString().trim();
         Date date = new Date();
-        PriorityNavDrawerFragment prio = new PriorityNavDrawerFragment();
         int priority = PRIORITY_HIGH;
-        NoteEntry noteEntry = new NoteEntry(ntTitle, ntDescription, priority, date);
-        mDB.noteDao().insertNote(noteEntry);
+        final NoteEntry noteEntry = new NoteEntry(ntTitle, ntDescription, priority, date);
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                if (mNoteId == DEFAULT_NOTE_ID) {
+                    mDB.noteDao().insertNote(noteEntry);
+                } else {
+                    //update note
+                    noteEntry.setId(mNoteId);
+                    mDB.noteDao().updateNote(noteEntry);
+                }
+            }
+        });
     }
 
     /*Implement Back Navigation*/
