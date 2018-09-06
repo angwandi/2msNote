@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
 /**
  * Global executor pools for the whole application.
  * <p>

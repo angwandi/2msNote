@@ -1,7 +1,6 @@
 package com.example.demad.a2msnote.ActivityFragments;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,7 +36,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static android.support.design.bottomappbar.BottomAppBar.FAB_ALIGNMENT_MODE_CENTER;
-import static com.example.demad.a2msnote.ActivityFragments.AddNoteFragment.EXTRA_NOTE_ID;
+
 /**
  * All Notes {@link Fragment} subclass.
  */
